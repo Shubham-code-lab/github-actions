@@ -12,7 +12,7 @@ jobs:
         run: echo "Hello"
       - name: print goodbye
         run: echo "goodbye"
-      - name: print mutipleline
+      - name: print multiple lines
         run: |
           echo "First output"
           echo "Second output"

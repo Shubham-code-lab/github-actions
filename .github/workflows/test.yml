@@ -1,0 +1,17 @@
+name: Test Project
+on: push
+jobs:
+    test:
+        runs-on: ubuntu-latest  
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3 #it is just repository link that perform this operation. @v3 is to lock the version of the action so new feature won't break it.continue-on-error: 
+              #with: #to configure the action provided in use.
+            - name: Install NodeJs #nodejs is already installed on the runner machine. so no need to install it. if it was not then we would have to install it by using actions/setup-node@v3.
+              uses: actions/setup-node@v3 
+              with:
+                node-version: 18
+            - name: Install dependencies
+              run: npm ci #instead of i we use ci to tell to only use dependencies from package-lock.json file.
+            - name: Run tests
+              run: npm test
