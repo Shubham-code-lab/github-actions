@@ -1,3 +1,5 @@
+# GitHub workflows are part of our repository; hence, we can commit them just like other code.
+
 #name can be anything
 name: First workflow
 on: workflow_dispatch #when this workflow will be executed
