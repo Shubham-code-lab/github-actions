@@ -1,0 +1,12 @@
+#name can be anything
+name: First workflow
+on: workflow_dispatch #when this workflow will be executed
+# YML uses indentation just like Python
+jobs:
+  first-job: #job identifier can be any name
+    runs-on: ubuntu-latest, #runner/environment on which jobs will execute steps. #search for GitHub action runners #selected runner will be installed on that hosting machine
+    steps: #list of steps, each hyphen represents a new step
+      - name: Print greeting
+        run: echo "Hello"
+      - name: print goodbye
+        run: echo "goodbye"
