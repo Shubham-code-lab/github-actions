@@ -1,6 +1,6 @@
 name: Test Project
 on: push
-jobs:
+jobs: #all the jobs are executed in parallel by default. we can configure them to execute sequentially.
     test:
         runs-on: ubuntu-latest  
         steps:
@@ -15,3 +15,19 @@ jobs:
               run: npm ci #instead of i we use ci to tell to only use dependencies from package-lock.json file.
             - name: Run tests
               run: npm test
+    deploy:
+        runs-on: ubuntu-latest   #every job has it own runner. it's own machine totally isolated from other jobs.
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Install NodeJs
+              uses: actions/setup-node@v3 
+              with:
+                node-version: 18
+            - name: Install dependencies
+              run: npm ci
+            - name: Build project
+              run: npm run build
+            - name: Deploy
+              run: echo "Deploying project..."
+            
