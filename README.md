@@ -18,9 +18,9 @@ We can also have conditional job
 Steps :-
 Execute a shell script or an Action(predefined script).
 We ca use custom or third-party actions.
-Steps are executed in order and can be conditional.
+Steps are executed in order and can be conditional.  
 Actions -> simple workflow -> configure
-All action are store in this pathrepository/.github/workflows/file.yml
+ All action are store in this path repository/.github/workflows/file.yml
 
 
 
