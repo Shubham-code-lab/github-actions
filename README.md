@@ -81,6 +81,6 @@ Skipping :-
 By default, all matching events start a workflow
 Exceptions for "push" & "pull_request"
 
-In commit 
+In commits
 git commit -m "added comment [skip actions]"
 git commit -m "added comment [skip ci]"
