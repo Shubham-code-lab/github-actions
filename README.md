@@ -49,3 +49,38 @@ https://github.com/marketplace
 
 alternative command "run"
 A (typically simple) shell command that's defined by you.
+
+
+-> Event :-
+https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+1] Controlling workflow Execution with event filter.(e.g :- not all push trigger workflow)
+2] Detailed Control with Activity Types.
+
+
+Give more detail control over when a workflow will be triggered.
+A] Activity Types :-
+1]opened ,2]closed, 3]edited
+
+B] Filters:-
+Push Event :- Filter based on target branch. (only push to main branch will trigger workflow)
+
+A note about fork pull request workflows.
+By default, pull Requests based on forks do Not trigger a workflow.
+Because Everyone can fork & open pull requests, malicious workflow runs and excess could be caused.
+Fist time contributor must be approved manually.sub-sequent pull request will trigger workflow automatically since approved fist one.
+
+
+Cancelling and skipping workflow Runs.
+
+Cancelling :-
+By default, workflows get cancelled if job fail. (but there is way to execute subsequent workflow when one fail)
+By default, a job fails if at least one step fails.
+You can also cancel workflow manually
+
+Skipping :-
+By default, all matching events start a workflow
+Exceptions for "push" & "pull_request"
+
+In commit 
+git commit -m "added comment [skip actions]"
+git commit -m "added comment [skip ci]"

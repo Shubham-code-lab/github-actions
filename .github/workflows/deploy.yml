@@ -1,6 +1,6 @@
 name: Test Project
-on: push
-jobs: #all the jobs are executed in parallel by default. we can configure them to execute sequentially.
+on: [push, workflow_dispatch] #adding multiple events using array.
+jobs: #all the jobs are executed in parallel by default. we can configure them to execute sequentially using needs keyword.
     test:
         runs-on: ubuntu-latest  
         steps:
@@ -16,6 +16,7 @@ jobs: #all the jobs are executed in parallel by default. we can configure them t
             - name: Run tests
               run: npm test
     deploy:
+        needs: test #this job will only run if the test job is successful. now they run sequentially. to give multiple jobs use array [job1, job2, ...].
         runs-on: ubuntu-latest   #every job has it own runner. it's own machine totally isolated from other jobs.
         steps:
             - name: Get code

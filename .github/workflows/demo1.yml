@@ -1,0 +1,33 @@
+name: Events Demo 1
+# on: [push, workflow_dispatch]
+on:
+  pull_request:  #pull request activity type
+    # types: [opened, synchronize]
+    # OR
+    # - opened
+    # - synchronize
+    types: opened #trigger when a pull request is opened/created.
+  workflow_dispatch:
+  push: #push filter events
+    branches:
+      - main #trigger when a push is made to the main branch.
+      - 'dev-*' # * means any character other than /
+      - 'feat/**' # ** means any character including /
+    paths-ignore:
+      - '.github/workflows/*' #workflow will not trigger if any file in the .github/workflows directory is changed.
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output event data
+        run: echo "${{ toJSON(github.event) }}"
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Test code
+        run: npm run test
+      - name: Build code
+        run: npm run build
+      - name: Deploy project
+        run: echo "Deploying..."
