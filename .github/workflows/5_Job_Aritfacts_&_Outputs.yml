@@ -9,6 +9,12 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+        #any rerun of workflow or jobs will use this cached dependency until package-lock.json file is changed.
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm #store the cache in this folder on github server, so as to se it in other workflow or jobs.
+          key: deps-node-modules-${{ hashFiles('package-lock.json') }} #dynamic key #when content of file change it generate new hash value. so when has changes it will invalidate the cache.
       - name: Install dependencies
         run: npm ci
       - name: Lint code
@@ -23,6 +29,11 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm #store the cache in this folder on github server, so as to se it in other workflow or jobs.
+          key: deps-node-modules-${{ hashFiles('package-lock.json') }} #dynamic key #when content of file change it generate new hash value. so when has changes it will invalidate the cache.
       - name: Install dependencies
         run: npm ci
       - name: Build website

@@ -95,3 +95,8 @@ binary executables for desktop applications, or test logs), these artifacts can 
 
 B] job Outputs :-
 Simple Values string or number that a job output so that we might use in other subsequent jobs.
+
+-> Caching Dependencies :-
+we can cache the long running task like installing dependence. this can be done with workflows or jobs.
+Any rerun of workflow or jobs will use this cached dependency until package-lock.json file is changed.
+we can't cache artifacts.
