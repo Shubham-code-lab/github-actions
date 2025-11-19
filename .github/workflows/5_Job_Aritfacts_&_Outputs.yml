@@ -18,6 +18,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+        script-file: ${{ steps.publish.outputs.var-script-file }} #publish is id we specify in the step ("id: publish").
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -25,6 +27,10 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Publish JS filename
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'var-script-file={}' >> $GITHUB_OUTPUT ';'  #script-file is variable name that hold the file name here in this case the command will execute and {} will contain the file name  # >> $GITHUB_OUTPUT target a file create by github in which our environment runs where our script-file is stored.
+        # run: find dist/assets/*.js -type f -execdir echo '::set-output name=var-script-file::{}' >> $GITHUB_OUTPUT ';'  #old way to set output.
       - name: Upload artifacts #we can store artifacts in github for later use in other jobs or workflows.
         uses: actions/upload-artifact@v4
         with:
@@ -43,5 +49,8 @@ jobs:
           name: dist-files
       - name: Output artifact
         run: ls
+      - name: Output Filename
+        run: |
+          echo "Filename: ${{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."

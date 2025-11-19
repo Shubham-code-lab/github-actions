@@ -86,7 +86,12 @@ git commit -m "added comment [skip actions]"
 git commit -m "added comment [skip ci]"
 
 -> job Artifacts & Outputs :-
+
+A] job Artifacts
 When a job generates assets (e.g., website files for web hosting, mobile app packages for App Store distribution, 
 binary executables for desktop applications, or test logs), these artifacts can be:
 1. Downloaded manually via GitHub UI or REST API
 2. Used in other jobs or workflows via GitHub Actions
+
+B] job Outputs :-
+Simple Values string or number that a job output so that we might use in other subsequent jobs.
