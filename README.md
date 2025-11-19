@@ -70,7 +70,7 @@ Because Everyone can fork & open pull requests, malicious workflow runs and exce
 Fist time contributor must be approved manually.sub-sequent pull request will trigger workflow automatically since approved fist one.
 
 
-Cancelling and skipping workflow Runs.
+-> Cancelling and skipping workflow Runs.
 
 Cancelling :-
 By default, workflows get cancelled if job fail. (but there is way to execute subsequent workflow when one fail)
@@ -84,3 +84,9 @@ Exceptions for "push" & "pull_request"
 In commits
 git commit -m "added comment [skip actions]"
 git commit -m "added comment [skip ci]"
+
+-> job Artifacts & Outputs :-
+When a job generates assets (e.g., website files for web hosting, mobile app packages for App Store distribution, 
+binary executables for desktop applications, or test logs), these artifacts can be:
+1. Downloaded manually via GitHub UI or REST API
+2. Used in other jobs or workflows via GitHub Actions
